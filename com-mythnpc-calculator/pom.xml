@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.mythnpc.calculator</groupId>
+	<artifactId>com-mythnpc-calculator</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<name>com-mythnpc-calculator</name>
+	<description>Demo project for Spring Boot</description>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.0.5.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	
+  <repositories>
+    <repository>
+      <id>my-repo2</id>
+      <name>your custom repo</name>
+      <url>http://repo.spring.io/plugins-release/</url>
+    </repository>
+    <repository>
+      <id>local</id>
+      <name>your custom repo</name>
+      <url>file:C:\Users\Gawd\.m2\repository</url>
+    </repository>
+  </repositories>
+
+	<properties>
+		<resourcesDirectory>${project.basedir}/src/main/resources</resourcesDirectory>
+		<wsdl.path>META-INF/wsdl/calculator.wsdl</wsdl.path>
+	</properties>
+
+	<dependencies>
+		<dependency>
+		    <groupId>org.jboss.ws.cxf</groupId>
+		    <artifactId>jbossws-cxf-client</artifactId>
+		    <version>4.3.6.Final</version>
+		    <scope>provided</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.jboss.ws.plugins</groupId>
+				<artifactId>maven-jaxws-tools-plugin</artifactId>
+				<version>1.1.2.Final</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>wsconsume</goal>
+						</goals>
+						<configuration>
+							<wsdls>
+								<wsdl>${resourcesDirectory}/${wsdl.path}</wsdl>
+							</wsdls>
+							<vmArgs>
+								<vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
+							</vmArgs>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+
+</project>
